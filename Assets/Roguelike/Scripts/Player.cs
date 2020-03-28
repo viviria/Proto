@@ -20,21 +20,27 @@ namespace Roguelike {
     {
       moveController_?.Update();
     }
+
+    public void SetUIEnabled(bool enabled)
+    {
+      GameObject uiCanvas = GameObject.Find("Canvas");
+      uiCanvas.GetComponent<CanvasController>().setEnabled(enabled);
+    }
     
     public void moveButtonDown(int moveDir)
     { 
       TouchUtil.TouchInfo touchInfo = TouchUtil.getTouch();
       if (!TouchUtil.isTouch(touchInfo)) {
-        GameObject uiCanvas = GameObject.Find("Canvas");
-        moveController_ = new MoveController(MOVE_TIME,
+        /*moveController_ = new MoveController(MOVE_TIME,
         () => {
           uiCanvas.GetComponent<CanvasController>().setEnabled(false);
         },
         () => {
           uiCanvas.GetComponent<CanvasController>().setEnabled(true);
-        });
+        });*/
 
-        moveController_.moveAction(gameObject, (MoveController.MoveDir)moveDir);
+        //moveController_ = new MoveController(MOVE_TIME);
+        //moveController_.moveAction(gameObject, (MoveController.MoveDir)moveDir);
       }
     }
 
