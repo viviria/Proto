@@ -12,6 +12,7 @@ namespace Roguelike {
     // Start is called before the first frame update
     void Start()
     {
+      animator_ = GetComponent<Animator>();
       playerStatus_ = new PlayerStatus();
     }
 
@@ -21,16 +22,18 @@ namespace Roguelike {
       moveController_?.Update();
     }
 
-    public void SetUIEnabled(bool enabled)
+    public void SetUIEnabled(int enabled)
     {
+      bool bEnabled = enabled != 0;
       GameObject uiCanvas = GameObject.Find("Canvas");
-      uiCanvas.GetComponent<CanvasController>().setEnabled(enabled);
+      uiCanvas.GetComponent<CanvasController>().setEnabled(bEnabled);
     }
     
     public void moveButtonDown(int moveDir)
     { 
       TouchUtil.TouchInfo touchInfo = TouchUtil.getTouch();
       if (!TouchUtil.isTouch(touchInfo)) {
+        MoveController.MoveTriger(gameObject, (MoveController.MoveDir)moveDir, true);
         /*moveController_ = new MoveController(MOVE_TIME,
         () => {
           uiCanvas.GetComponent<CanvasController>().setEnabled(false);
@@ -42,6 +45,11 @@ namespace Roguelike {
         //moveController_ = new MoveController(MOVE_TIME);
         //moveController_.moveAction(gameObject, (MoveController.MoveDir)moveDir);
       }
+    }
+
+    public void TransitionIdle(int moveDir)
+    {
+      MoveController.MoveTriger(gameObject, (MoveController.MoveDir)moveDir, false);
     }
 
     public void attackButtonDown()

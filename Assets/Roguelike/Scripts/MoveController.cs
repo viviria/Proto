@@ -28,6 +28,27 @@ namespace Roguelike {
       timeCallback_?.Update();
     }
 
+    public static void MoveTriger(GameObject own, MoveDir moveDir, bool enabled)
+    {
+      Animator animator = own.GetComponent<Animator>();
+
+      switch (moveDir) {
+        case MoveDir.UP:
+        case MoveDir.RIGHT_UP:
+        case MoveDir.RIGHT:
+          animator.SetBool("isRightMove", enabled);
+          break;
+        case MoveDir.RIGHT_DOWN:
+        case MoveDir.DOWN:
+          animator.SetBool("isDownMove", enabled);
+          break;
+        case MoveDir.LEFT_DOWN:
+        case MoveDir.LEFT:
+        case MoveDir.LEFT_UP:
+          break;
+      }
+    }
+
     private Vector3 getMoveVector(MoveDir moveDir) {
       switch (moveDir) {
         case MoveDir.UP:
