@@ -6,8 +6,13 @@ namespace Roguelike {
 
   public class MoveController
   {
-    public enum MoveDir {
-      UP, LEFT_UP, LEFT, LEFT_DOWN, DOWN, RIGHT_DOWN, RIGHT, RIGHT_UP
+    public enum MotionState : Int32 {
+      IDLE_UP = 0, IDLE_LEFT_UP, IDLE_LEFT, IDLE_LEFT_DOWN, IDLE_DOWN, IDLE_RIGHT_DOWN, IDLE_RIGHT, IDLE_RIGHT_UP, // IDLE
+      UP = 10, LEFT_UP, LEFT, LEFT_DOWN, DOWN, RIGHT_DOWN, RIGHT, RIGHT_UP, // MOVE
+    }
+
+    public static MotionState MotionMoveToIdle(MotionState motionState) {
+      return (MotionState)((int)motionState - 10);
     }
 
     private float moveTime_ = 1.0f;
@@ -27,13 +32,18 @@ namespace Roguelike {
     {
       timeCallback_?.Update();
     }
-
-    public static void MoveTriger(GameObject own, MoveDir moveDir, bool enabled)
+/*
+    public static void SetMoveTriger(GameObject own, MoveDir moveDir, bool enabled)
     {
       Animator animator = own.GetComponent<Animator>();
 
+      animator.SetInteger("MoveDir", (int)moveDir);
+      animator.SetBool("IsIdle", false);
+      
       switch (moveDir) {
         case MoveDir.UP:
+          animator.SetBool("isUpMove", enabled);
+          break;
         case MoveDir.RIGHT_UP:
         case MoveDir.RIGHT:
           animator.SetBool("isRightMove", enabled);
@@ -97,6 +107,6 @@ namespace Roguelike {
       startAction_?.Invoke();
       // animator?.SetTrigger("walkTrigger");
       timeCallback_.Start();
-    }
+    }*/
   }
 }

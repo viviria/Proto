@@ -8,6 +8,7 @@ namespace Roguelike {
     private MoveController moveController_ = null;
     private PlayerStatus playerStatus_ = null;
     private Animator animator_ = null;
+    private MoveController.MotionState motionState_ = MoveController.MotionState.IDLE_DOWN;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,10 @@ namespace Roguelike {
     { 
       TouchUtil.TouchInfo touchInfo = TouchUtil.getTouch();
       if (!TouchUtil.isTouch(touchInfo)) {
-        MoveController.MoveTriger(gameObject, (MoveController.MoveDir)moveDir, true);
+        SetUIEnabled(0);
+        motionState_ = (MoveController.MotionState)moveDir;
+        animator_.SetInteger("Motion", moveDir);
+        //movedir_ = (MoveController.MoveDir)moveDir;
         /*moveController_ = new MoveController(MOVE_TIME,
         () => {
           uiCanvas.GetComponent<CanvasController>().setEnabled(false);
@@ -47,9 +51,11 @@ namespace Roguelike {
       }
     }
 
-    public void TransitionIdle(int moveDir)
+    public void moveEnd()
     {
-      MoveController.MoveTriger(gameObject, (MoveController.MoveDir)moveDir, false);
+      SetUIEnabled(1);
+      motionState_ = MoveController.MotionMoveToIdle(motionState_);
+      animator_.SetInteger("Motion", (int)motionState_);
     }
 
     public void attackButtonDown()
