@@ -539,8 +539,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e179ffb9934ad4c80dfa23613c5a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdleSprites: []
-  WalkSprites: []
+  idleMotionNum: 0
+  idleSprites: []
+  walkSprites: []
 --- !u!114 &449921199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6346,7 +6347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e179ffb9934ad4c80dfa23613c5a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdleSprites:
+  idleMotionNum: 0
+  idleSprites:
   - {fileID: 1700977645228913892, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}
   - {fileID: 8120478070683364640, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}
   - {fileID: 3769576064330473544, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}
@@ -6371,7 +6373,7 @@ MonoBehaviour:
   - {fileID: -6807550417333085615, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}
   - {fileID: -6858994472721802627, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}
   - {fileID: -3775961861597178191, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}
-  WalkSprites:
+  walkSprites:
   - {fileID: 1700977645228913892, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}
   - {fileID: 8120478070683364640, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}
   - {fileID: 3769576064330473544, guid: 232ff324301afb74ba3bb9222644aa2b, type: 3}

@@ -23,10 +23,10 @@ namespace Roguelike {
     public void NextMotionSpite()
     {
       spirteIndex_ = spirteIndex_ + spriteAdd_;
-      if (spirteIndex_ == 0 || spirteIndex_ == CharacterAnimationController.MOTION_SPRITE_NUM - 1) {
+      if (spirteIndex_ == 0 || spirteIndex_ == animationController_.MotionSpriteNumPerDirection() - 1) {
         spriteAdd_ *= -1;
       }
-      var sprite = animationController_.GetSprite(animationController_.GetMotionType(), spirteIndex_);
+      var sprite = animationController_.GetSprite(spirteIndex_);
       var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
       spriteRenderer.sprite = sprite;
     }
